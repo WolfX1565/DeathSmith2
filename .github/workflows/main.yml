@@ -1,28 +1,6 @@
-name: Build DeathSmith
-on:
-  push:
-    branches: [ main ]
+- name: Upload build
+  uses: actions/upload-artifact@v4
+  with:
+    name: DeathSmith-Mod
+    path: build/libs/**/*.jar
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Java 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Build mod
-        run: |
-          chmod +x ./gradlew || true
-          ./gradlew build || echo "Gradle not initialized, but structure ready"
-
-      - name: Upload build
-        uses: actions/upload-artifact@v3
-        with:
-          name: DeathSmith-Mod
-          path: build/libs/**/*.jar
