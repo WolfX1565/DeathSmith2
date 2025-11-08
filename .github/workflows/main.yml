@@ -23,8 +23,10 @@ jobs:
           chmod +x ./gradlew || true
           ./gradlew build || echo "Gradle not initialized, but structure ready"
 
-      - name: Upload build
+           - name: Upload all jars
         uses: actions/upload-artifact@v4
         with:
           name: DeathSmith-Mod
-          path: build/libs/**/*.jar
+          path: |
+            build/**/*.jar
+            out/**/*.jar
